@@ -4,3 +4,4 @@
 * 2 - add path
 * 3 - flutter doctor
 * 4 - flutter create my_project_name
+* 5 - flutter doctor --android-licenses
