@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:clima/Estilos.dart';
 import 'package:clima/entities/Clima.dart';
+import 'package:clima/api/Api.dart';
 
 class ClimaView extends StatelessWidget {
   ClimaView({this.clima});
@@ -33,20 +34,37 @@ class _ClimaPageState extends State<ClimaPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Row(children: <Widget>[Text('Endereço: '), Text(clima.endereco)]),
-            Row(children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Row(children: <Widget>[
+                  Image.network(Api.urlApi + clima.urlImagem),
+                  Text(
+                    clima.temperatura.toString() + ' ºC',
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  )
+                ]),
+              ],
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              Text(
+                clima.endereco.toString(),
+                style: TextStyle(fontSize: 30),
+              )
+            ]),
+            SizedBox(
+              height: 30,
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               Text('Chuva: '),
               Text(clima.chuva.toString() + ' %')
             ]),
-            Row(children: <Widget>[
-              Text('Temperatura: '),
-              Text(clima.temperatura.toString() + ' ºC')
-            ]),
-            Row(children: <Widget>[
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               Text('Umidade: '),
               Text(clima.umidade.toString() + ' %')
             ]),
-            Row(children: <Widget>[
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               Text('Vento: '),
               Text(clima.vento.toString() + ' m/s')
             ]),
