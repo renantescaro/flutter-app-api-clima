@@ -18,13 +18,13 @@ class Clima {
 
   factory Clima.fromJson(dynamic json) {
     return Clima(
-      endereco: json['endereco'].toString(),
-      data: json['data'].toString(),
-      urlImagem: json['urlImagem'].toString(),
-      temperatura: double.parse(json['temperatura'].toString()),
-      chuva: double.parse(json['chuva'].toString()),
-      umidade: double.parse(json['umidade'].toString()),
-      vento: double.parse(json['vento'].toString()),
+      endereco: json['endereco'],
+      data: json['data'],
+      urlImagem: json['urlImagem'],
+      temperatura: double.tryParse(json['temperatura'].toString()) ?? 0,
+      chuva: double.tryParse(json['chuva'].toString()) ?? 0,
+      umidade: double.tryParse(json['umidade'].toString()) ?? 0,
+      vento: double.tryParse(json['vento'].toString()) ?? 0,
     );
   }
 }
