@@ -2,9 +2,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class Api {
-  static final String ip = '192.168.0.5:5000';
-  static final String urlApi = 'http://' + ip + '/';
-
   static getHttp(String url) async {
     try {
       final response = await http.get(url, headers: {
