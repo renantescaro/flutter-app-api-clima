@@ -8,3 +8,6 @@
 
 ### AndroidManifest.xml
 * myproject/android/app/src/main/AndroidManifest.xml
+
+### Configuração
+* alterar atributo '_ip' em: \lib\Config.dart
