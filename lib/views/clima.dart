@@ -1,3 +1,4 @@
+import 'package:clima/Config.dart';
 import 'package:flutter/material.dart';
 import 'package:clima/Estilos.dart';
 import 'package:clima/entities/Clima.dart';
@@ -39,7 +40,7 @@ class _ClimaPageState extends State<ClimaPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Row(children: <Widget>[
-                  Image.network(Api.urlApi + clima.urlImagem),
+                  Image.network(Config.urlApi + clima.urlImagem),
                   Text(
                     clima.temperatura.toString() + ' ºC',
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
