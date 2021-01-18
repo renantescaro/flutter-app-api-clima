@@ -5,3 +5,6 @@
 * 3 - flutter doctor
 * 4 - flutter create my_project_name
 * 5 - flutter doctor --android-licenses
+
+### AndroidManifest.xml
+* myproject/android/app/src/main/AndroidManifest.xml

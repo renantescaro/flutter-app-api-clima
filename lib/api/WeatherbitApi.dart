@@ -10,4 +10,15 @@ class WeatherbitApi {
     dynamic respostaJson = json.decode(resposta);
     return new Clima.fromJson(respostaJson);
   }
+
+  static Future<Clima> consultarPorPosicao(
+      double latitude, double longitude) async {
+    dynamic resposta = await Api.getHttp(Api.urlApi +
+        '/posicao/' +
+        latitude.toString() +
+        '/' +
+        longitude.toString());
+    dynamic respostaJson = json.decode(resposta);
+    return new Clima.fromJson(respostaJson);
+  }
 }

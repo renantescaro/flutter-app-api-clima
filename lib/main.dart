@@ -2,6 +2,7 @@ import 'package:clima/api/WeatherbitApi.dart';
 import 'package:clima/views/clima.dart';
 import 'package:clima/views/mensagem.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'dart:developer' as dev;
 import 'package:clima/entities/Clima.dart';
 import 'Estilos.dart';
@@ -33,6 +34,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  double latitude;
+  double longitude;
+
   TextEditingController txtNomeCidade = TextEditingController();
   void _abrirTelaClimaPorCidade(String nomeCidade) async {
     _perguntaNomeCidade();
@@ -50,6 +54,23 @@ class _MyHomePageState extends State<MyHomePage> {
       return;
     }
     Mensagem.simples('Preencha o nome da cidade!', context);
+    return;
+  }
+
+  void _abrirTelaClimaPorLocalizacao() async {
+    dev.log(this.latitude.toString());
+    dev.log(this.longitude.toString());
+    Clima clima =
+        await WeatherbitApi.consultarPorPosicao(this.latitude, this.longitude);
+    if (clima.endereco.isNotEmpty) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ClimaView(clima: clima),
+          ));
+      return;
+    }
+    Mensagem.simples('Erro ao consultar cidade!', context);
     return;
   }
 
@@ -83,7 +104,21 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void _abrirTelaClimaPorLocalizacao() {}
+  _getLocalizacaoAtual() {
+    final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      setState(() {
+        this.latitude = position.latitude;
+        this.longitude = position.longitude;
+      });
+      _abrirTelaClimaPorLocalizacao();
+    }).catchError((e) {
+      print(e);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               width: double.infinity,
               child: RaisedButton(
-                onPressed: _abrirTelaClimaPorLocalizacao,
+                onPressed: _getLocalizacaoAtual,
                 color: Estilos.getCorBotao(),
                 child: Text('Consultar por localização',
                     style: TextStyle(color: Colors.white)),
