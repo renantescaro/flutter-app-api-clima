@@ -10,11 +10,4 @@ class WeatherbitApi {
     dynamic respostaJson = json.decode(resposta);
     return new Clima.fromJson(respostaJson);
   }
-
-  static consultarImagem(String nomeImagem) {
-    if (nomeImagem == null || nomeImagem == 'null') {
-      return Api.urlImagens + 'padrao.jpg';
-    }
-    return Api.urlImagens + nomeImagem;
-  }
 }
