@@ -11,13 +11,13 @@ main() {
 
     test('retorno por nome de cidade existente', () async {
       Clima clima = await WeatherbitApi.consultarPorCidade('Lins');
-      expect(clima.endereco.toString(), "Lins27BR");
+      expect(clima.endereco.toString(), "Lins / BR");
     });
 
     test('retorno por posição cidade existente', () async {
       Clima clima =
           await WeatherbitApi.consultarPorPosicao(-21.419583, -50.077013);
-      expect(clima.endereco.toString(), "Penápolis27BR");
+      expect(clima.endereco.toString(), "Penápolis / BR");
     });
   });
 }

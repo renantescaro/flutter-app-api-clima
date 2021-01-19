@@ -58,8 +58,8 @@ class _ClimaPageState extends State<ClimaPage> {
               height: 30,
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-              Text('Chuva: '),
-              Text(clima.chuva.toString() + ' %')
+              Text('Clima: '),
+              Text(clima.clima.toString())
             ]),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               Text('Umidade: '),
@@ -67,7 +67,7 @@ class _ClimaPageState extends State<ClimaPage> {
             ]),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               Text('Vento: '),
-              Text(clima.vento.toString() + ' m/s')
+              Text(clima.vento.toString() + ' km/h')
             ]),
           ],
         ),
